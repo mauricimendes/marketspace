@@ -1,11 +1,16 @@
-import { Image, Text, VStack, Center, ScrollView } from 'native-base'
+import { Image, Text, Center, ScrollView } from 'native-base'
+import { useNavigation } from '@react-navigation/native'
 
 import logoPNG from '@assets/logo.png'
 import MarketspaceSVG from '@assets/marketspace.svg'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
+import { AuthNavigationRouteProps } from '@routes/auth.routes'
 
 export function SignIn() {
+
+  const navigation = useNavigation<AuthNavigationRouteProps>()
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
       <Center
@@ -56,6 +61,8 @@ export function SignIn() {
         <Button
           title='Entrar'
           mt={4}
+          w='full'
+          onPress={() => navigation.navigate('home')}
         />
       </Center>
       <Center px={10}>
@@ -67,6 +74,8 @@ export function SignIn() {
           title='Criar uma conta'
           color='gray'
           mb={12}
+          w='full'
+          onPress={() => navigation.navigate('signUp')}
         />
       </Center>
     </ScrollView>
