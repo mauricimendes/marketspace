@@ -62,7 +62,6 @@ export function SignIn() {
           title='Entrar'
           mt={4}
           w='full'
-          onPress={() => navigation.navigate('home')}
         />
       </Center>
       <Center px={10}>

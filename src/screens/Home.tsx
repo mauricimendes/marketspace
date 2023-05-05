@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native'
+import { Dimensions, TouchableOpacity } from 'react-native'
 import {
   HStack,
   Heading,
@@ -6,14 +6,28 @@ import {
   ScrollView,
   Text,
   VStack,
-  Input as NativeBaseFilterInput
+  FlatList,
+  Box,
+  Modal,
+  Center,
+  Switch,
+  Checkbox
 } from 'native-base'
 
 import { HomeHeader } from '@components/HomeHeader'
 import { Feather } from '@expo/vector-icons'
 import { FilterInput } from '@components/FilterInput'
+import { AdsCard } from '@components/AdsCard'
+import { useState } from 'react'
+import { SelectTag } from '@components/SelectTag'
+import { Button } from '@components/Button'
 
 export function Home() {
+  const teste = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+  const paymentMethods = ['Boleto', 'Pix', 'Dinheiro', 'Cartão de Crédito', 'Depósito Bancário']
+
+  const [openModalFilter, setOpenModalFilter] = useState(false);
+
   return (
     <ScrollView flex={1} bgColor='gray.600' px={6}>
       <HomeHeader />
@@ -92,7 +106,92 @@ export function Home() {
 
       <FilterInput
         placeholder='Buscar anúncio'
+        mb={4}
+        onSearch={() => { }}
+        onOpenFilter={() => setOpenModalFilter(true)}
       />
+
+      <FlatList
+        data={teste}
+        scrollEnabled={false}
+        keyExtractor={item => item}
+        numColumns={2}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
+        renderItem={({ item }) => (
+          <Box w={Dimensions.get('window').width / 2 - 32}>
+            <AdsCard />
+          </Box>
+        )}
+      />
+
+      <Modal isOpen={openModalFilter} onClose={() => setOpenModalFilter(false)} safeAreaTop={true}>
+        <Modal.Content w='full' mb={0} mt='auto' >
+
+          <Modal.Body>
+            <Center flex={1}>
+              <Box h={1} rounded='full' bgColor='gray.400' w={14} />
+            </Center>
+
+            <VStack>
+              <HStack mt={8} justifyContent='space-between' alignItems='center'>
+                <Heading
+                  fontFamily='heading'
+                  color='gray.100'
+                  fontSize='lg'
+                >
+                  Filtrar anúncios
+                </Heading>
+                <Modal.CloseButton top={-1} />
+              </HStack>
+
+              <Heading mt={6} fontFamily='heading' color='gray.200' fontSize='sm'>
+                Condição
+              </Heading>
+
+              <HStack mt={3}>
+                <SelectTag />
+                <SelectTag />
+              </HStack>
+            </VStack>
+
+            <Heading mt={6} fontFamily='heading' color='gray.200' fontSize='sm'>
+              Aceita troca?
+            </Heading>
+
+            <HStack>
+              <Switch
+                onTrackColor='blue.100'
+                offTrackColor='gray.500'
+                size='lg'
+              />
+            </HStack>
+
+            <Heading mt={6} fontFamily='heading' color='gray.200' fontSize='sm'>
+              Meios de pagamento aceitos
+            </Heading>
+
+            <VStack mt={3}>
+              {
+                paymentMethods.map(paymentMethod => (
+                  <Checkbox value='1' defaultIsChecked _checked={{
+                    colorScheme: 'blue.100',
+                  }}>
+                    <Text fontSize='md' color='gray.200' fontFamily='body' >
+                      {paymentMethod}
+                    </Text>
+                  </Checkbox>
+                ))
+              }
+            </VStack>
+
+            <HStack mt={16} flex={1} style={{ gap: 8 }}>
+              <Button flex={1} title='Resetar filtros' color='gray' />
+              <Button flex={1} title='Aplicar filtros' color='black' />
+            </HStack>
+          </Modal.Body>
+        </Modal.Content>
+      </Modal>
+
     </ScrollView>
   )
 }

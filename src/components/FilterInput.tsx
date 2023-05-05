@@ -3,7 +3,6 @@ import {
   IInputProps,
   FormControl,
   Icon,
-  Pressable,
   HStack,
   Divider,
   Box
@@ -12,9 +11,11 @@ import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native'
 
 type Props = IInputProps & {
+  onSearch: () => void
+  onOpenFilter: () => void
 }
 
-export function FilterInput({ ...rest }: Props) {
+export function FilterInput({ onOpenFilter, onSearch, ...rest }: Props) {
 
   return (
     <FormControl mb={4}>
@@ -28,7 +29,7 @@ export function FilterInput({ ...rest }: Props) {
         placeholderTextColor='gray.400'
         InputRightElement={
           <HStack mr={2}>
-            <TouchableOpacity activeOpacity={0.6}>
+            <TouchableOpacity onPress={onSearch} activeOpacity={0.6}>
               <Icon
                 as={Feather}
                 name='search'
@@ -41,7 +42,7 @@ export function FilterInput({ ...rest }: Props) {
               mx={2}
               color='gray.400'
             />
-            <TouchableOpacity activeOpacity={0.6}>
+            <TouchableOpacity onPress={onOpenFilter} activeOpacity={0.6}>
               <Icon
                 as={Feather}
                 name='sliders'

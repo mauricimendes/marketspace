@@ -11,6 +11,7 @@ export const THEME = extendTheme({
       100: '#EE7979'
     },
     gray: {
+      50: '#1A181B45',
       100: '#1A181B',
       200: '#3E3A40',
       300: '#5F5B62',
@@ -25,6 +26,8 @@ export const THEME = extendTheme({
     body: 'Karla_400Regular',
   },
   fontSizes: {
+    x: 10,
+    xxs: 11,
     xs: 12,
     sm: 14,
     md: 16,
@@ -32,9 +35,13 @@ export const THEME = extendTheme({
     xl: 24,
   },
   sizes: {
+    0.5: 2,
+    1.5: 6,
     18: 76,
     11: 45,
     14: 56,
     22: 88,
+    23: 90,
+    26: 100
   }
 })
