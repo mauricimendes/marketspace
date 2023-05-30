@@ -1,19 +1,38 @@
+import { useRef } from 'react'
 import { Button } from '@components/Button'
-import { Box, HStack, Heading, Icon, Image, ScrollView, Tag, Text, VStack } from 'native-base'
+import { Box, FlatList, HStack, Heading, Icon, Image, ScrollView, Tag, Text, VStack } from 'native-base'
 import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import AdsTestProduct from '@assets/ads_test_product.png'
+import { Animated, Dimensions } from 'react-native'
+
+const images = [
+  { id: 1, image: AdsTestProduct },
+  { id: 2, image: AdsTestProduct },
+  { id: 3, image: AdsTestProduct },
+]
 
 export function ItemDetails() {
+
   return (
     <VStack flex={1} bg='gray.600'>
       <ScrollView flex={1} mb={90}>
-        <Image
-          source={AdsTestProduct}
-          resizeMode='contain'
+        <FlatList
           w='full'
-          maxH={72}
-          alt='Imagens do produto'
+          data={images}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => (
+            <Image
+              source={item.image}
+              resizeMode='cover'
+              w={Dimensions.get('window').width}
+              maxH={72}
+              minH={72}
+              alt='Imagens do produto'
+            />
+          )}
         />
 
         <HStack px={6} mt={5}>

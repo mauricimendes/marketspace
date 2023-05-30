@@ -9,12 +9,14 @@ import { Home } from '@screens/Home'
 import { Logout } from '@screens/Logout'
 import { ItemDetails } from '@screens/ItemDetails'
 import { MyAds } from '@screens/MyAds'
+import { CreateAds } from '@screens/CreateAds'
 
 type AppRoutes = {
   home: undefined
   myAds: undefined
   logout: undefined
   itemDetails: undefined
+  create: undefined
 }
 
 export type AppNavigationRouteProps = BottomTabNavigationProp<AppRoutes>
@@ -77,7 +79,7 @@ export function AppRoutes() {
           headerRight: () => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('home')}
+                onPress={() => navigation.navigate('create')}
                 activeOpacity={0.6}
                 style={{ marginRight: 24 }}
               >
@@ -135,6 +137,42 @@ export function AppRoutes() {
           },
           tabBarStyle: {
             display: 'none'
+          }
+        }}
+      />
+
+      <Screen 
+        name='create'
+        component={CreateAds}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            display: 'none'
+          },
+          headerShown: true,
+          headerTitle: 'Criar anúncio',
+          headerTitleAlign: 'center',
+          headerRightContainerStyle: {
+            justifyContent: 'center'
+          },
+          headerLeft: () => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                activeOpacity={0.6}
+                style={{ marginLeft: 24 }}
+              >
+                <Icon
+                  as={Feather}
+                  name='arrow-left'
+                  color='gray.100'
+                  size={6}
+                />
+              </TouchableOpacity>
+            )
+          },
+          headerStyle: {
+            backgroundColor: colors.gray[600],
           }
         }}
       />

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Dimensions } from 'react-native'
 
 import { Box, FlatList, HStack, Select, Text, VStack } from 'native-base'
 import { AdsCard } from '@components/AdsCard'
@@ -35,7 +34,7 @@ export function MyAds() {
         numColumns={2}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         renderItem={({ item }) => (
-          <Box w={Dimensions.get('window').width / 2 - 32}>
+          <Box >
             <AdsCard />
           </Box>
         )}

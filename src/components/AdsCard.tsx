@@ -24,7 +24,6 @@ export function AdsCard() {
           top={0}
           zIndex={10}
           h={26}
-          width='full'
           rounded='sm'
         >
           <Text

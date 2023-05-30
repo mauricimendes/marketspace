@@ -1,7 +1,12 @@
 import { HStack, Heading, Image, Text, VStack } from 'native-base'
 import { Button } from '@components/Button'
 
+import { useNavigation } from '@react-navigation/native'
+import { AppNavigationRouteProps } from '@routes/app.routes'
+
 export function HomeHeader() {
+  const navigation = useNavigation<AppNavigationRouteProps>()
+
   return (
     <HStack mt={16}>
       <Image
@@ -37,6 +42,7 @@ export function HomeHeader() {
         title='Criar anúncio'
         icon='plus'
         color='black'
+        onPress={() => navigation.navigate('create')}
       />
     </HStack>
   )

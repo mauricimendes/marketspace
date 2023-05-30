@@ -22,11 +22,12 @@ import { useState } from 'react'
 import { SelectTag } from '@components/SelectTag'
 import { Button } from '@components/Button'
 
+
 export function Home() {
   const teste = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
   const paymentMethods = ['Boleto', 'Pix', 'Dinheiro', 'Cartão de Crédito', 'Depósito Bancário']
 
-  const [openModalFilter, setOpenModalFilter] = useState(false);
+  const [openModalFilter, setOpenModalFilter] = useState(false)
 
   return (
     <ScrollView flex={1} bgColor='gray.600' px={6}>
@@ -118,15 +119,14 @@ export function Home() {
         numColumns={2}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         renderItem={({ item }) => (
-          <Box w={Dimensions.get('window').width / 2 - 32}>
+          <Box mb={4}>
             <AdsCard />
           </Box>
         )}
       />
 
-      <Modal isOpen={openModalFilter} onClose={() => setOpenModalFilter(false)} safeAreaTop={true}>
-        <Modal.Content w='full' mb={0} mt='auto' >
-
+      <Modal isOpen={openModalFilter}  onClose={() => setOpenModalFilter(false)} safeAreaTop={true}>
+        <Modal.Content mb={0} w='full' mt='auto' >
           <Modal.Body>
             <Center flex={1}>
               <Box h={1} rounded='full' bgColor='gray.400' w={14} />
@@ -173,7 +173,7 @@ export function Home() {
             <VStack mt={3}>
               {
                 paymentMethods.map(paymentMethod => (
-                  <Checkbox value='1' defaultIsChecked _checked={{
+                  <Checkbox key={paymentMethod} value='1' defaultIsChecked _checked={{
                     colorScheme: 'blue.100',
                   }}>
                     <Text fontSize='md' color='gray.200' fontFamily='body' >
